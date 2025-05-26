@@ -1,70 +1,55 @@
-# Getting Started with Create React App
+## Завдання
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Створити програмний інструмент, що надає можливість користувачу:
 
-## Available Scripts
+### Пункт 1
+Задавати поведніку багатопоточної (консольної) програми з `1<=N<=100` потоками за допомогою набору з `N` блок-схем, кожна з яких відповідає одному потоку. Кожна блок-схема може містити до 100 блоків. Користувач повинен мати можливість створювати, редагувати та зберігати у файлі такі блок схеми за допомогою графічного інтерфейсу; кожна блок-схема задає послідовний алгоритм, що виконує відповідний потік. Орієнтовані графи блок схем можуть містити цикли (маються на увазі цикли у графі, а не цикли while). 
+Дії, що допускаються у блок-схемах (що задають поведінки окремих потоків) мають включати:
+* присвоєння вигляду `V1=V2`, що розуміється як “значення `V2` записати у `V1`”, де `V1`, `V2` – спільні змінні 32-бітного цілочисельного типу (змінні у спільній пам’яті, що є доступними усім потокам; користувач повинен мати можливість використовувати до 100 таких змінних в одній блок схемі)
+* присвоєння вигляду `V=C`, що розуміється як “значення `C` записати у `V`” , де `V` – спільна змінна, `C` – (десятковий) літерал, що задає ціле число (константу) в діапазоні 0...231-1
+* команди вигляду `INPUT V`, що розуміються як “прочитати цілочисельне знчення в діапазоні 0..231-1 зі стандартного вводу та записати його у `V`”,  де `V` - спільна змінна
+* команди вигляду `PRINT V`, що розуміються як “вивести знчення V на стандартний вивід”,  де `V` - спільна змінна.
+Умови, допустимі у блоках розгалудження мають включати:
+* порівняння вигляду `V==C`, що розуміється як “значення `V`рівне значенню `С`”, де `V` – спільна змінна, `C` – літерал
+* порівняння вигляду `V<C`, що розуміється як “значення `V` менше значення `С`”, де `V` – спільна змінна, `C` – літерал.
 
-In the project directory, you can run:
+### Пункт 2
+Виконувати автоматичну трансляцію набору `1<=N<=100` блок-схем (див. пункт 1) у вихідний код багатопоточної програми з `N` потоками на одній з мов програмування C, C++, C#, Java, Python (на Ваш вибір).
 
-### `npm start`
+### Пункт 3
+Виконувати автоматичне тестування набору блок схем (заданого згідно пункту 1) на наборі тестів (test set), заданому користувачем. Кожний тест (test case) є парою з вхідних даних, що подаються на стандартний ввід та вихідних даних, що очікуються на стандартному виводі після завершення роботи усіх потоків. При тестуванні вважати, що семантика набору блок-схем відповідає семантиці програми, що є результатом її трансляції згідно пункту 2. Якщо відповідно до цієї семантики набір блок схем задає недетерміновану програму (вихідні дані якої не визначаються однозначно вхідними даними, що можливо, наприклад, якщо два потоки незалежно виводять 0 та 1), то надати користувачу можливість багатократного тестування програми на одному й тому ж тесті з перебором різних виконань (без повторів), що відповідають одним і тим же вхідним даним. Надати користувачу можливість достроково перервати процес виконання цього перебору, ввести ціле число `1<=K<=20`, та дізнатися відсоток усіх варіантів виконання програми, що складаються з не більше як `K` операцій та відповідають вхідним даним поточного тесту, для яких коректність виводу програми було перевірено до даного моменту в процесі тестування.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Встановлення та запуск
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Попередні вимоги
+- Node.js (версія 14 або новіша)
+- npm або yarn
 
-### `npm test`
+### Кроки встановлення
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Клонування репозиторію**
+```bash
+git clone https://github.com/taramuri/flowchart_builder
+cd flowchart-builder
+```
 
-### `npm run build`
+2. **Встановлення залежностей**
+```bash
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Запуск у режимі розробки**
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Додаток буде доступний за адресою `http://localhost:3000`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. **Збірка для продакшену**
+```bash
+npm run build
+```
 
-### `npm run eject`
+### Інтерфейс застосунку та приклад створеної блок-схеми 
+![Блок-схема](https://drive.google.com/uc?export=view&id=1RQhHl8o940IRoNS_gveuPflikN-d4p3d)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
